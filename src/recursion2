@@ -1,0 +1,82 @@
+package recursion2;
+
+public class Main {
+	public static void main (String [] args) {
+		int[] arr = {2, 2, 4, 4, 6};
+        System.out.println("Sum of array: " + sumOfArr(arr, arr.length - 1));
+        System.out.println("Count of positive numbers: " + countPositiveNumbers(arr, arr.length - 1));
+        System.out.println ("Is Number In Arr- index: " + IsNumberInArr(arr, 6, arr.length - 1));
+        System.out.println ("Is goes up: " + isGoesUp(arr, arr.length - 1));
+        System.out.println ("Is prime number: " + isPrimeNumber(arr, arr.length - 1));
+	}
+	
+	
+	public static int sumOfArr (int [] arr, int i) {
+		if (i == 0) {
+			return arr[0];
+		}
+		return sumOfArr (arr, i-1) + arr[i];
+	}
+	
+	public static int countPositiveNumbers (int [] arr, int i) {
+		if (i == 0) {
+			if (arr[i] > 0) {
+				return 1;
+			}
+			else {
+				return 0;
+			}
+		}
+		if (arr[i] < 0) {
+			return countPositiveNumbers (arr, i-1) + 0;
+			
+		}
+		return countPositiveNumbers (arr, i-1) + 1;
+	}
+
+	
+	public static int IsNumberInArr (int [] arr, int number, int i) {
+		if (i < 0) {
+            return -1;
+        }
+		if (arr[i] == number) {
+			return i;
+		}
+		else {
+			return IsNumberInArr (arr, number, i-1); 
+		}
+	}
+
+	
+	public static boolean isGoesUp (int [] arr, int i) {
+		if (i <= 0) {
+			return true;
+		}
+		
+		if (arr[i] < arr[i-1]) {
+			return false;
+		}
+		
+		return isGoesUp (arr, i-1);
+	}
+	
+	public static boolean isPrime(int number, int divisor) {
+		if (number < 2|| number % divisor == 0) {
+			return false;
+		}
+		if ( divisor * divisor > number) {
+			return true;
+		}
+	return isPrime ( number, divisor + 1);
+	}
+	
+	public static boolean isPrimeNumber (int [] arr, int i) {
+		if (i == 0) {
+			return true;
+		}
+		if (isPrime(arr[i], 2) == true) {
+			return false;
+		}
+		return isPrimeNumber(arr, i-1);
+	}
+}
