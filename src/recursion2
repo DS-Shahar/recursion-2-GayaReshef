@@ -27,7 +27,7 @@ public class Main {
 				return 0;
 			}
 		}
-		if (arr[i] < 0) {
+		if (arr[i] <= 0) {
 			return countPositiveNumbers (arr, i-1) + 0;
 			
 		}
